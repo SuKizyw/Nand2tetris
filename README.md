@@ -1,3 +1,3 @@
 # Nand2tetris
-# My first cs project 1
+My first cs project 1
 ---
