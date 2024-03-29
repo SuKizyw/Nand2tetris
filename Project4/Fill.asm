@@ -8,52 +8,36 @@
 // i.e. writes "black" in every pixel. When no key is pressed, 
 // the screen should be cleared.
 
+(INIT)
     @8192
     D=A
     @n
     M=D
 (DETECT)
-    @i
-    M=0
-    @SCREEN
-    D=A
-    @address
-    M=D
+    @n
+    M=M-1
+    D=M
+    @INIT
+    D;JLT
     @KBD
     D=M
     @BLACKENLOOP
     D;JNE
     @WHITENLOOP
-    D;JEQ
+    0;JMP
 (BLACKENLOOP)
-    @i
-    D=M
+    @SCREEN
+    D=A
     @n
-    D=D-M
-    @DETECT
-    D;JGT
-    @address
-    A=M
+    A=D+M
     M=-1
-    @i
-    M=M+1
-    @address
-    M=M+1
-    @BLACKENLOOP
+    @DETECT
     0;JMP
 (WHITENLOOP)
-    @i
-    D=M
+    @SCREEN
+    D=A
     @n
-    D=D-M
-    @DETECT
-    D;JGT
-    @address
-    A=M
+    A=D+M
     M=0
-    @i
-    M=M+1
-    @address
-    M=M+1
-    @WHITENLOOP
+    @DETECT
     0;JMP
